@@ -10,9 +10,7 @@ public class Pokemon {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     public String getUrl() {
         return url;

@@ -10,12 +10,14 @@
         android:layout_height="96dp"
         android:layout_gravity="center"/>
 
+    <!--#151f42-->
     <TextView
         android:id="@+id/nombrePokemon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textAllCaps="true"/>
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
 
 </LinearLayout>
