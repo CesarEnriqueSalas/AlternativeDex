@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlternativeDex"
         tools:targetApi="31">
-        <activity android:name=".MainActivity"
+        <activity android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity"
+        <activity android:name=".activities.DetailActivity"
             android:exported="false">
+            <meta-data
+                android:name="androidx.core.app.NavUtils.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

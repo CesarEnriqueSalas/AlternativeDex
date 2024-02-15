@@ -1,4 +1,4 @@
-package projectofinal.alternativedex;
+package projectofinal.alternativedex.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.adapter.ListaPokemonAdapter;
 import projectofinal.alternativedex.models.Pokemon;
 import projectofinal.alternativedex.models.PokemonRespuesta;
@@ -35,9 +36,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
         listaPokemonAdapter = new ListaPokemonAdapter(this);
+
         recyclerView.setAdapter(listaPokemonAdapter);
         recyclerView.setHasFixedSize(true);
+
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
@@ -85,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
                     PokemonRespuesta pokemonRespuesta = response.body();
                     ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
-
                     listaPokemonAdapter.adicionarListaPokemon(listaPokemon);
 
                 }else {

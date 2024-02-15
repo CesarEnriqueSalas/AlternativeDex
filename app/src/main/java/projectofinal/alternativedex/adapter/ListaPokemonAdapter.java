@@ -1,6 +1,7 @@
 package projectofinal.alternativedex.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,17 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.imagen_pokemon, parent, false);
-        return new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = viewHolder.getAdapterPosition();
+                Pokemon pokemon = dataset.get(position);
+                Intent intent = pokemon.getIntent(v.getContext());
+                v.getContext().startActivity(intent);
+            }
+        });
+        return viewHolder;
     }
 
     @Override
@@ -42,7 +53,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
 
         Glide.with(context)
                 .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
-                        + p.getNumber() + ".png")
+                        + p.getNumberPNG() + ".png")
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.fotoImagenView);
@@ -61,11 +72,11 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView fotoImagenView;
+
         private TextView nombreTextView;
 
         public ViewHolder(View itemView){
             super(itemView);
-
             fotoImagenView = itemView.findViewById(R.id.fotoPokemon);
             nombreTextView = itemView.findViewById(R.id.nombrePokemon);
         }

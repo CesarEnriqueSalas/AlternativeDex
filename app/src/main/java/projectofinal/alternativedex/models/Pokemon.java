@@ -1,11 +1,14 @@
 package projectofinal.alternativedex.models;
 
+import android.content.Context;
+import android.content.Intent;
+
+import projectofinal.alternativedex.activities.DetailActivity;
+
 public class Pokemon {
 
-    private int number;
     private String name;
     private String url;
-
     public String getName() {
         return name;
     }
@@ -20,12 +23,18 @@ public class Pokemon {
         this.url = url;
     }
 
-    public int getNumber() {
+    public int getNumberPNG() {
         String[] urlPartes = url.split("/");
         return Integer.parseInt(urlPartes[urlPartes.length - 1]);
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public Intent getIntent(Context context){
+        Intent intent = new Intent(context, DetailActivity.class);
+        intent.putExtra("name", name);
+        intent.putExtra("url", url);
+        intent.putExtra("numero", getNumberPNG());
+
+        return intent;
     }
+
 }
