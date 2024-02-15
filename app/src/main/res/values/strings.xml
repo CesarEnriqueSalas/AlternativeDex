@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AlternativeDex</string>
+    <string name="iniciar">Iniciar Sesion</string>
 </resources>

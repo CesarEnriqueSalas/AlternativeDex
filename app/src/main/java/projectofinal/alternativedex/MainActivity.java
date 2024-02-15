@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import projectofinal.alternativedex.adapter.ListaPokemonAdapter;
 import projectofinal.alternativedex.models.Pokemon;
 import projectofinal.alternativedex.models.PokemonRespuesta;
 import projectofinal.alternativedex.service.PokeApiService;

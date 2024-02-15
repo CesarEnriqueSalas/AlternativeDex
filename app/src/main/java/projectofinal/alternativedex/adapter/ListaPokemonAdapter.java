@@ -1,4 +1,4 @@
-package projectofinal.alternativedex;
+package projectofinal.alternativedex.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
+import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.models.Pokemon;
 
 public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapter.ViewHolder> {
