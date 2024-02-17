@@ -98,6 +98,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void mostrarDetallePokemon(PokemonDetalle pokemonDetalle, int pokemonId) {
         TextView weightTextView = findViewById(R.id.weightTextnumber);
+        System.out.println(pokemonDetalle.getStats().toString());
         weightTextView.setText(String.valueOf(pokemonDetalle.getWeight()));
 
         TextView idTextView = findViewById(R.id.pokedexTextnumber);
@@ -144,6 +145,9 @@ public class DetailActivity extends AppCompatActivity {
                     progressBar = findViewById(R.id.determinateBar5);
                     textView1 = findViewById(R.id.spdstat);
                     break;
+                case 5:
+                    progressBar = findViewById(R.id.determinateBar6);
+                    textView1 = findViewById(R.id.speed);
             }
             if (progressBar != null) {
                 int max = progressBar.getMax();
