@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -30,6 +35,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DetailActivity extends AppCompatActivity {
 
     private static final String TAG = "POKEDEX";
+    private int pokemonNumber;
+    private boolean isShiny = false;
+
+    private MediaPlayer mediaPlayer;
+    private TextView nameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +51,23 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             String pokemonName = intent.getStringExtra("name");
-            int pokemonNumber = intent.getIntExtra("numero", -1);
+            pokemonNumber = intent.getIntExtra("numero", -1);
+
+            ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+
+            if (pokemonNumber <= 151) {
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_rojo_azul);
+            } else if (pokemonNumber > 151 && pokemonNumber <= 251){
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_oro_plata);
+            } else if (pokemonNumber > 251 && pokemonNumber <= 386) {
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_rubi_zafiro);
+            } else if (pokemonNumber > 386 && pokemonNumber <= 493) {
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_diamante_perla);
+            } else if (pokemonNumber > 493 && pokemonNumber <= 649){
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_negro_blanco);
+            } else if (pokemonNumber > 649 && pokemonNumber <= 721){
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_x_y);
+            }
 
             setupViews(pokemonName, pokemonNumber);
 
@@ -57,16 +83,57 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setupViews(String pokemonName, int pokemonNumber) {
-        TextView nameTextView = findViewById(R.id.nameTextView);
+        nameTextView = findViewById(R.id.nameTextView);
         nameTextView.setText(pokemonName.toUpperCase());
 
         ImageView imageView = findViewById(R.id.imageView);
+        loadPokemonImage(imageView, pokemonNumber);
+    }
+
+    private void loadPokemonImage(ImageView imageView, int pokemonNumber) {
+        String imageUrl;
+        if (isShiny) {
+            imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"
+                    + pokemonNumber + ".png";
+            nameTextView.setTextColor(Color.parseColor("#FFF000"));
+            try{
+                play();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        } else {
+            imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
+                    + pokemonNumber + ".png";
+            stop();
+            nameTextView.setTextColor(Color.parseColor("#000000"));
+        }
+
         Glide.with(this)
-                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
-                        + pokemonNumber + ".png")
+                .load(imageUrl)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
+    }
+
+    private void play() {
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer = MediaPlayer.create(this, R.raw.pk_shiny_sound);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                stop();
+            }
+        });
+    }
+
+    private void stop() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     private Retrofit buildRetrofit() {
@@ -164,5 +231,17 @@ public class DetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void cambiarShiny(View view) {
+        isShiny = !isShiny;
+        ImageView imageView = findViewById(R.id.imageView);
+        loadPokemonImage(imageView, pokemonNumber);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stop();
     }
 }
