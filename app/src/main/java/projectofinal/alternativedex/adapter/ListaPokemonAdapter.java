@@ -57,6 +57,19 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.fotoImagenView);
+
+        String n;
+
+        if (p.getNumberPNG() < 10) {
+            n = "N.º 000" + String.valueOf(p.getNumberPNG());
+        } else if (p.getNumberPNG() < 100) {
+            n = "N.º 00" + String.valueOf(p.getNumberPNG());
+        } else if (p.getNumberPNG() < 1000) {
+            n = "N.º 0" + String.valueOf(p.getNumberPNG());
+        } else {
+            n = "N.º" + String.valueOf(p.getNumberPNG());
+        }
+        holder.numeroPokemon.setText(n);
     }
 
     @Override
@@ -71,12 +84,14 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView numeroPokemon;
         private ImageView fotoImagenView;
 
         private TextView nombreTextView;
 
         public ViewHolder(View itemView){
             super(itemView);
+            numeroPokemon = itemView.findViewById(R.id.numeroPokemons);
             fotoImagenView = itemView.findViewById(R.id.fotoPokemon);
             nombreTextView = itemView.findViewById(R.id.nombrePokemon);
         }

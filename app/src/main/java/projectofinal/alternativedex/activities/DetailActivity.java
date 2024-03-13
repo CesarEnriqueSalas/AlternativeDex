@@ -116,7 +116,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         TextView textView = findViewById(R.id.tipoTexto);
-        textView.setText(typesString);
+        textView.setText(typesString.toUpperCase());
 
         List<PokemonDetalle.Stat> stats = pokemonDetalle.getStats();
         for (int i = 0; i < stats.size(); i++) {

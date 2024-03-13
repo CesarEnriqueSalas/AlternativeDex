@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="80dp"
+            android:textStyle="bold"
             android:fontFamily="monospace"
             android:text="nombrePokemon"
             android:textAppearance="?android:textAppearanceLarge"
@@ -82,7 +83,7 @@
                     android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif-monospace"
-                    android:text="Weight"
+                    android:text="Peso"
                     android:textColor="@color/black"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -113,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif-monospace"
-                    android:text="PokedexNumber"
+                    android:text="PokedexNumero"
                     android:textColor="@color/black"
                     android:textAlignment="center"
                     android:textSize="22sp"
@@ -134,12 +135,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:orientation="vertical">
-
         <TextView
             android:id="@+id/TiposTitulo"
             android:layout_width="wrap_content"
@@ -147,7 +142,9 @@
             android:fontFamily="serif-monospace"
             android:text="Tipo del Pokemon"
             android:textColor="@color/black"
-            android:textSize="23dp" />
+            android:textSize="23dp"
+            android:layout_marginLeft="100dp"
+            android:textStyle="bold"/>
 
          <TextView
              android:id="@+id/tipoTexto"
@@ -159,7 +156,15 @@
              android:textSize="24sp"
              android:textStyle="bold" />
 
-        </LinearLayout>
+        <!--Barras-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/PerfomanceTextView"
@@ -172,21 +177,14 @@
             android:textColor="@color/black"
             android:textSize="23dp" />
 
-        <!--Barras-->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="369dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="horizontal">
+
+
 
             <TextView
                 android:layout_width="40dp"
