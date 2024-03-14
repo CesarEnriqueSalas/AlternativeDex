@@ -2,6 +2,7 @@ package projectofinal.alternativedex.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.models.Pokemon;
@@ -23,11 +26,13 @@ import projectofinal.alternativedex.models.Pokemon;
 public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapter.ViewHolder> {
 
     private ArrayList<Pokemon> dataset;
+    private List<Pokemon> originalPokemon;
     private Context context;
 
     public ListaPokemonAdapter(Context context){
         this.context = context;
         dataset = new ArrayList<>();
+        originalPokemon = new ArrayList<>(dataset);
     }
 
     @Override
@@ -79,9 +84,38 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
         return dataset.size();
     }
 
+    public void filter(final String strSearch){
+        if (strSearch.length() == 0){
+            dataset.clear();
+            dataset.addAll(originalPokemon);
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                List<Pokemon> collect = originalPokemon.stream()
+                        .filter(d -> d.getName().toLowerCase().contains(strSearch))
+                        .collect(Collectors.toList());
+                dataset.clear();
+                dataset.addAll(collect);
+            } else {
+                dataset.clear();
+                for(Pokemon p : originalPokemon){
+                    if (p.getName().toLowerCase().contains(strSearch)){
+                        dataset.add(p);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+
     public void adicionarListaPokemon(ArrayList<Pokemon> listaPokemon){
         dataset.addAll(listaPokemon);
         notifyDataSetChanged();
+    }
+
+    public void actualizarOriginalPokemon() {
+        originalPokemon.clear();
+        originalPokemon.addAll(dataset);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

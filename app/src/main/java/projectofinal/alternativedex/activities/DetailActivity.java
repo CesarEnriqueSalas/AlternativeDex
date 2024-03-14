@@ -67,6 +67,12 @@ public class DetailActivity extends AppCompatActivity {
                 constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_negro_blanco);
             } else if (pokemonNumber > 649 && pokemonNumber <= 721){
                 constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_x_y);
+            } else if (pokemonNumber > 721 && pokemonNumber <= 809){
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_sol_luna);
+            } else if (pokemonNumber > 809 && pokemonNumber <= 905){
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_espada_escudo);
+            } else if (pokemonNumber > 905) {
+                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_escartala_purpura);
             }
 
             setupViews(pokemonName, pokemonNumber);

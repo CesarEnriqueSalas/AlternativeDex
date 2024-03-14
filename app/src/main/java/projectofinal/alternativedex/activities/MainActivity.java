@@ -1,6 +1,7 @@
 package projectofinal.alternativedex.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,11 +21,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private static final String TAG = "POKEDEX";
     private Retrofit retrofit;
     private RecyclerView recyclerView;
+    private SearchView searchView;
     private ListaPokemonAdapter listaPokemonAdapter;
     private int offset;
 
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
+        searchView = findViewById(R.id.buscador);
 
         listaPokemonAdapter = new ListaPokemonAdapter(this);
 
@@ -75,7 +78,13 @@ public class MainActivity extends AppCompatActivity {
         aptoParaCargar = true;
         offset = 0;
         obtenerDatos(offset);
+        initListener();
     }
+
+    private void initListener(){
+        searchView.setOnQueryTextListener(this);
+    }
+
 
     private void obtenerDatos(int offset){
         PokeApiService service = retrofit.create(PokeApiService.class);
@@ -90,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     PokemonRespuesta pokemonRespuesta = response.body();
                     ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
                     listaPokemonAdapter.adicionarListaPokemon(listaPokemon);
-
+                    listaPokemonAdapter.actualizarOriginalPokemon();
                 }else {
                     Log.e(TAG, "onResponse: " + response.errorBody());
                 }
@@ -102,5 +111,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailure" + t.getMessage());
             }
         });
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        listaPokemonAdapter.filter(newText);
+        return false;
     }
 }
