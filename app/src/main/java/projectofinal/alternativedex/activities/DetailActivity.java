@@ -56,23 +56,23 @@ public class DetailActivity extends AppCompatActivity {
             ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
 
             if (pokemonNumber <= 151) {
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_rojo_azul);
+                constraintLayout.setBackgroundResource(R.drawable.kanto_map);
             } else if (pokemonNumber > 151 && pokemonNumber <= 251){
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_oro_plata);
+                constraintLayout.setBackgroundResource(R.drawable.johto_map);
             } else if (pokemonNumber > 251 && pokemonNumber <= 386) {
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_rubi_zafiro);
+                constraintLayout.setBackgroundResource(R.drawable.hoenn_map);
             } else if (pokemonNumber > 386 && pokemonNumber <= 493) {
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_diamante_perla);
+                constraintLayout.setBackgroundResource(R.drawable.sinnoh_map);
             } else if (pokemonNumber > 493 && pokemonNumber <= 649){
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_negro_blanco);
+                constraintLayout.setBackgroundResource(R.drawable.teselia_map);
             } else if (pokemonNumber > 649 && pokemonNumber <= 721){
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_x_y);
+                constraintLayout.setBackgroundResource(R.drawable.kalos_map);
             } else if (pokemonNumber > 721 && pokemonNumber <= 809){
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_sol_luna);
+                constraintLayout.setBackgroundResource(R.drawable.alola_map);
             } else if (pokemonNumber > 809 && pokemonNumber <= 905){
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_espada_escudo);
+                constraintLayout.setBackgroundResource(R.drawable.galar_map);
             } else if (pokemonNumber > 905) {
-                constraintLayout.setBackgroundResource(R.drawable.fondo_cardview_pk_escartala_purpura);
+                constraintLayout.setBackgroundResource(R.drawable.paldea_map);
             }
 
             setupViews(pokemonName, pokemonNumber);
