@@ -2,4 +2,6 @@
     <string name="app_name">AlternativeDex</string>
     <string name="iniciar">Iniciar Sesion</string>
     <string name="numero">N.º____</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

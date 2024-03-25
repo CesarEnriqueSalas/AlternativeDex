@@ -8,35 +8,17 @@
     android:orientation="vertical"
     android:background="#7b69c7">
 
-    <TextView
-        android:id="@+id/textoAplicacion"
+    <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#7269cb"
-        android:text="Pokedex"
-        android:textSize="45dp"
-        android:textColor="@color/black"
-        android:textAllCaps="true"
-        android:textAlignment="center"/>
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/buscador"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:queryHint="Buscar Pokemon"
-        app:iconifiedByDefault="false"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:onClick="mostarInformaion" />
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menuInferior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+        app:layout_constraintBottom_toBottomOf="@id/frame"
         android:background="#7b69c7"
         app:menu="@menu/bottom_nav_menu"/>
 

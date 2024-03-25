@@ -1,126 +1,66 @@
 package projectofinal.alternativedex.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
 
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import projectofinal.alternativedex.fragments.TournamentFragment;
+import projectofinal.alternativedex.fragments.HomeFragment;
 import projectofinal.alternativedex.R;
-import projectofinal.alternativedex.adapter.ListaPokemonAdapter;
-import projectofinal.alternativedex.models.Pokemon;
-import projectofinal.alternativedex.models.PokemonRespuesta;
-import projectofinal.alternativedex.service.PokeApiService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "POKEDEX";
-    private Retrofit retrofit;
-    private RecyclerView recyclerView;
-    private SearchView searchView;
-    private ListaPokemonAdapter listaPokemonAdapter;
-    private int offset;
-
-    private boolean aptoParaCargar;
+    private FrameLayout frameLayout;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        searchView = findViewById(R.id.buscador);
+        bottomNavigationView = findViewById(R.id.menuInferior);
+        frameLayout = findViewById(R.id.frame);
 
-        listaPokemonAdapter = new ListaPokemonAdapter(this);
-
-        recyclerView.setAdapter(listaPokemonAdapter);
-        recyclerView.setHasFixedSize(true);
-
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                super.onScrolled(recyclerView, dx, dy);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
 
-                if (dy > 0){
-                    int visibleItemCount = layoutManager.getChildCount();
-                    int totalItemCount = layoutManager.getItemCount();
-                    int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
+                if (itemId == R.id.home){
+                    loadFragment(new HomeFragment(), false);
 
-                    if(aptoParaCargar){
-                        if((visibleItemCount + pastVisibleItems) >= totalItemCount){
-                            Log.i(TAG, "Llegamos al final.");
+                } else if (itemId == R.id.tournaments){
+                    loadFragment(new TournamentFragment(), false);
 
-                            aptoParaCargar = false;
-                            offset += 20;
-                            obtenerDatos(offset);
-                        }
-                    }
+                } else if (itemId == R.id.chat) {
+
+                } else if (itemId == R.id.profile){
+
                 }
-            }
-        });
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://pokeapi.co/api/v2/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        aptoParaCargar = true;
-        offset = 0;
-        obtenerDatos(offset);
-        initListener();
-    }
-
-    private void initListener(){
-        searchView.setOnQueryTextListener(this);
-    }
-
-
-    private void obtenerDatos(int offset){
-        PokeApiService service = retrofit.create(PokeApiService.class);
-        Call<PokemonRespuesta> pokemonRespuestaCall = service.obtenerListaPokemon(20, offset);
-
-        pokemonRespuestaCall.enqueue(new Callback<PokemonRespuesta>() {
-            @Override
-            public void onResponse(Call<PokemonRespuesta> call, Response<PokemonRespuesta> response) {
-                aptoParaCargar = true;
-                if (response.isSuccessful()){
-
-                    PokemonRespuesta pokemonRespuesta = response.body();
-                    ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
-                    listaPokemonAdapter.adicionarListaPokemon(listaPokemon);
-                    listaPokemonAdapter.actualizarOriginalPokemon();
-                }else {
-                    Log.e(TAG, "onResponse: " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PokemonRespuesta> call, Throwable t) {
-                aptoParaCargar = true;
-                Log.e(TAG, "onFailure" + t.getMessage());
+                return true;
             }
         });
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
+    private void loadFragment(Fragment fragment, boolean isAppInitialized){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        listaPokemonAdapter.filter(newText);
-        return false;
+        if (isAppInitialized){
+            fragmentTransaction.add(R.id.frame, fragment);
+        } else {
+            fragmentTransaction.replace(R.id.frame, fragment);
+        }
+        fragmentTransaction.commit();
     }
 }
