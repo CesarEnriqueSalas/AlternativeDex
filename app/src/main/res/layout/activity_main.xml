@@ -29,7 +29,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:onClick="mostarInformaion"/>
+        android:layout_height="570dp"
+        android:onClick="mostarInformaion" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/menuInferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+        android:background="#7b69c7"
+        app:menu="@menu/bottom_nav_menu"/>
+
 
 </LinearLayout>
