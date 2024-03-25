@@ -47,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         setupToolbar();
-
+        //kgghjhjhgjhg
         Intent intent = getIntent();
         if (intent != null) {
             String pokemonName = intent.getStringExtra("name");
