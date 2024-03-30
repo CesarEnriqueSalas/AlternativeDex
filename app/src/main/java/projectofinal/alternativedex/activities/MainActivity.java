@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        loadFragment(new HomeFragment(), false);
     }
 
     private void loadFragment(Fragment fragment, boolean isAppInitialized){

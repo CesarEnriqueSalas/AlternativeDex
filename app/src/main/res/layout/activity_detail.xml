@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@android:color/white"/>
+        app:titleTextColor="@android:color/black"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -28,7 +28,9 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="cambiarShiny"/>
+        android:onClick="cambiarShiny"
+        tools:ignore="UsingOnClickInXml"
+        android:contentDescription="TODO" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -55,7 +57,7 @@
             android:layout_marginTop="80dp"
             android:textStyle="bold"
             android:fontFamily="monospace"
-            android:text="nombrePokemon"
+            android:text="@string/nombrePokemon"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@color/black"
             android:textSize="30sp" />
@@ -69,7 +71,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -77,7 +80,8 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal|start"
                 android:orientation="vertical"
-                android:paddingStart="8dp">
+                android:paddingStart="8dp"
+                tools:ignore="RtlSymmetry">
 
                 <TextView
                     android:id="@+id/weightText"
@@ -85,7 +89,7 @@
                     android:textAlignment="center"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif-monospace"
-                    android:text="Peso"
+                    android:text="@string/peso"
                     android:textColor="@color/black"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -96,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="130"
+                    android:text="@string/valorDefecto"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -109,14 +113,15 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal|end"
                 android:orientation="vertical"
-                android:paddingEnd="8dp">
+                android:paddingEnd="8dp"
+                tools:ignore="RtlSymmetry">
 
                 <TextView
                     android:id="@+id/heightText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif-monospace"
-                    android:text="PokedexNumero"
+                    android:text="@string/pokedex"
                     android:textColor="@color/black"
                     android:textAlignment="center"
                     android:textSize="22sp"
@@ -128,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="130"
+                    android:text="@string/valorDefecto"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -142,10 +147,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="serif-monospace"
-            android:text="Tipo del Pokemon"
+            android:text="@string/tiposPokemon"
             android:textColor="@color/black"
-            android:textSize="23dp"
-            android:layout_marginLeft="100dp"
+            android:textSize="25sp"
+            android:layout_marginStart="80dp"
             android:textStyle="bold"/>
 
          <TextView
@@ -153,7 +158,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_gravity="center_horizontal"
-             android:text="Tipos"
+             android:text="@string/textoTipos"
              android:textColor="@color/black"
              android:textSize="24sp"
              android:textStyle="bold" />
@@ -165,7 +170,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -175,9 +180,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-black"
-            android:text="Pokemon Stats"
+            android:text="@string/statsPokemon"
             android:textColor="@color/black"
-            android:textSize="23dp" />
+            android:textSize="23sp" />
 
 
         <LinearLayout
@@ -191,11 +196,11 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-black"
-                android:text="HP"
+                android:text="@string/hp"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ProgressBar
                 android:id="@+id/determinateBar1"
@@ -210,10 +215,10 @@
                 android:id="@+id/HPstat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -226,11 +231,11 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-black"
-                android:text="ATK"
+                android:text="@string/atk"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ProgressBar
                 android:id="@+id/determinateBar2"
@@ -245,11 +250,11 @@
                 android:id="@+id/atkstat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="sans-serif-black"
 
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -262,11 +267,11 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-black"
-                android:text="DEF"
+                android:text="@string/def"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ProgressBar
                 android:id="@+id/determinateBar3"
@@ -281,10 +286,10 @@
                 android:id="@+id/deftat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -297,11 +302,11 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-black"
-                android:text="SPA"
+                android:text="@string/spa"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ProgressBar
                 android:id="@+id/determinateBar4"
@@ -316,10 +321,10 @@
                 android:id="@+id/spastat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -332,11 +337,11 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-black"
-                android:text="SPD"
+                android:text="@string/spd"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ProgressBar
                 android:id="@+id/determinateBar5"
@@ -351,10 +356,10 @@
                 android:id="@+id/spdstat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -367,11 +372,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="sans-serif-black"
-                android:text="SPE"
+                android:text="@string/spe"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <ProgressBar
                 android:id="@+id/determinateBar6"
@@ -386,10 +391,10 @@
                 android:id="@+id/speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 

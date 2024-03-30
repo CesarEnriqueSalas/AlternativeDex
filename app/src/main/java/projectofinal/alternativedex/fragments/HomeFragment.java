@@ -104,12 +104,12 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
             public void onResponse(Call<PokemonRespuesta> call, Response<PokemonRespuesta> response) {
                 aptoParaCargar = true;
                 if (response.isSuccessful()){
-
                     PokemonRespuesta pokemonRespuesta = response.body();
                     ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
                     listaPokemonAdapter.adicionarListaPokemon(listaPokemon);
                     listaPokemonAdapter.actualizarOriginalPokemon();
-                }else {
+                    listaPokemonAdapter.filter(searchView.getQuery().toString());
+                } else {
                     Log.e(TAG, "onResponse: " + response.errorBody());
                 }
             }
