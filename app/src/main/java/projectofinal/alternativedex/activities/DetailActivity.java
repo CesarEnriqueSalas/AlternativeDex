@@ -1,8 +1,5 @@
 package projectofinal.alternativedex.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -13,16 +10,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import java.util.List;
-
 import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.models.PokemonDetalle;
 import projectofinal.alternativedex.service.PokeApiService;
@@ -47,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         setupToolbar();
-        //kgghjhjhgjhg
+
         Intent intent = getIntent();
         if (intent != null) {
             String pokemonName = intent.getStringExtra("name");
@@ -57,21 +50,21 @@ public class DetailActivity extends AppCompatActivity {
 
             if (pokemonNumber <= 151) {
                 constraintLayout.setBackgroundResource(R.drawable.kanto_map);
-            } else if (pokemonNumber > 151 && pokemonNumber <= 251){
+            } else if (pokemonNumber <= 251){
                 constraintLayout.setBackgroundResource(R.drawable.johto_map);
-            } else if (pokemonNumber > 251 && pokemonNumber <= 386) {
+            } else if (pokemonNumber <= 386) {
                 constraintLayout.setBackgroundResource(R.drawable.hoenn_map);
-            } else if (pokemonNumber > 386 && pokemonNumber <= 493) {
+            } else if (pokemonNumber <= 493) {
                 constraintLayout.setBackgroundResource(R.drawable.sinnoh_map);
-            } else if (pokemonNumber > 493 && pokemonNumber <= 649){
+            } else if (pokemonNumber <= 649){
                 constraintLayout.setBackgroundResource(R.drawable.teselia_map);
-            } else if (pokemonNumber > 649 && pokemonNumber <= 721){
+            } else if (pokemonNumber <= 721){
                 constraintLayout.setBackgroundResource(R.drawable.kalos_map);
-            } else if (pokemonNumber > 721 && pokemonNumber <= 809){
+            } else if (pokemonNumber <= 809){
                 constraintLayout.setBackgroundResource(R.drawable.alola_map);
-            } else if (pokemonNumber > 809 && pokemonNumber <= 905){
+            } else if (pokemonNumber <= 905){
                 constraintLayout.setBackgroundResource(R.drawable.galar_map);
-            } else if (pokemonNumber > 905) {
+            } else {
                 constraintLayout.setBackgroundResource(R.drawable.paldea_map);
             }
 
@@ -102,9 +95,9 @@ public class DetailActivity extends AppCompatActivity {
             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"
                     + pokemonNumber + ".png";
             nameTextView.setTextColor(Color.parseColor("#FFF000"));
-            try{
+            try {
                 play();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
@@ -122,17 +115,20 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void play() {
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer = MediaPlayer.create(this, R.raw.pk_shiny_sound);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+        if (mediaPlayer == null) { // Solo crea una nueva instancia si no existe una ya
+            mediaPlayer = MediaPlayer.create(this, R.raw.pk_shiny_sound);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
 
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                stop();
-            }
-        });
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stop();
+                }
+            });
+        } else if (!mediaPlayer.isPlaying()) { // Si hay una instancia existente pero no está reproduciendo, comienza a reproducir
+            mediaPlayer.start();
+        }
     }
 
     private void stop() {
@@ -171,7 +167,6 @@ public class DetailActivity extends AppCompatActivity {
 
     private void mostrarDetallePokemon(PokemonDetalle pokemonDetalle, int pokemonId) {
         TextView weightTextView = findViewById(R.id.weightTextnumber);
-        System.out.println(pokemonDetalle.getStats().toString());
         weightTextView.setText(String.valueOf(pokemonDetalle.getWeight()));
 
         TextView idTextView = findViewById(R.id.pokedexTextnumber);
