@@ -68,8 +68,11 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                             Log.i(TAG, "Llegamos al final.");
 
                             aptoParaCargar = false;
-                            offset += 20;
-                            obtenerDatos(offset);
+
+                            if (offset < 985) {
+                                offset += 25;
+                                obtenerDatos(offset);
+                            }
                         }
                     }
                 }
@@ -86,7 +89,6 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         obtenerDatos(offset);
         initListener();
 
-        // Devolver la vista inflada
         return view;
     }
 
@@ -97,7 +99,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
     private void obtenerDatos(int offset){
         PokeApiService service = retrofit.create(PokeApiService.class);
-        Call<PokemonRespuesta> pokemonRespuestaCall = service.obtenerListaPokemon(20, offset);
+        Call<PokemonRespuesta> pokemonRespuestaCall = service.obtenerListaPokemon(25, offset);
 
         pokemonRespuestaCall.enqueue(new Callback<PokemonRespuesta>() {
             @Override

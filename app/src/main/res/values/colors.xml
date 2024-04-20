@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red"> #a93226 </color>
     <color name="grey">#a9a0a0</color>
+    <color name="my_toolbar_icon_color">#333333</color>
 </resources>
