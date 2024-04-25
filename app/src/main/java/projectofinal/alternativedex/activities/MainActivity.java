@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
 
+import projectofinal.alternativedex.fragments.SingInFragment;
 import projectofinal.alternativedex.fragments.TournamentFragment;
 import projectofinal.alternativedex.fragments.HomeFragment;
 import projectofinal.alternativedex.R;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.menuInferior);
         frameLayout = findViewById(R.id.frame);
+        FirebaseApp.initializeApp(this);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (itemId == R.id.chat) {
 
                 } else if (itemId == R.id.profile){
+                    loadFragment(new SingInFragment(), false);
 
                 }
 
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new HomeFragment(), false);
     }
 
-    private void loadFragment(Fragment fragment, boolean isAppInitialized){
+    public void loadFragment(Fragment fragment, boolean isAppInitialized){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 

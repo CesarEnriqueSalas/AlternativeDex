@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "482059965205",
+    "project_id": "alternativedex",
+    "storage_bucket": "alternativedex.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482059965205:android:e7587b1d5c4e6f01bbcf1c",
+        "android_client_info": {
+          "package_name": "projectofinal.alternativedex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsNUN7m5N8t816Y3SrZ3YtEhVfr_rR2m8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
