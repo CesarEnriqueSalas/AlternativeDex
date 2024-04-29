@@ -22,8 +22,6 @@ public class SingInFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //FirebaseApp.initializeApp(this);
-        // Inicializar Firebase
         FirebaseApp.initializeApp(requireActivity());
     }
     @Override
@@ -37,28 +35,11 @@ public class SingInFragment extends Fragment {
                 ((MainActivity) requireActivity()).loadFragment(new SingUpFragment(), false);
             }
         });
-        boton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addData();
-            }
-        });
 
         return view;
     }
 
 
 
-    private void addData() {
-        FirebaseFirestore baseDatos = FirebaseFirestore.getInstance();
-        HashMap<String, Object> datos = new HashMap<>();
-        datos.put("Nombre", "Alvaro");
-        datos.put("Apellido", "Benayas");
-        baseDatos.collection("users").add(datos).addOnSuccessListener(documentReference -> {
-                    Toast.makeText(requireContext(), "Data Inserted", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(exception -> {
-                    Toast.makeText(requireContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-    }
+
 }
