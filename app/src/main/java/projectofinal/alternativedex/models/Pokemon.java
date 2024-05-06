@@ -9,8 +9,17 @@ public class Pokemon {
 
     private String name;
     private String url;
+    private String generation;
     public String getName() {
         return name;
+    }
+
+    public String getGeneration() {
+        return generation;
+    }
+
+    public void setGeneration(String generation) {
+        this.generation = generation;
     }
 
     public void setName(String name) { this.name = name; }

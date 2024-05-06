@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
@@ -17,18 +17,127 @@
             android:layout_height="70dp"
             android:background="#7269cb"
             android:text="@string/TitleHome"
-            android:textSize="45sp"
-            android:textColor="@color/black"
+            android:textAlignment="center"
             android:textAllCaps="true"
-            android:textAlignment="center"/>
+            android:textColor="@color/black"
+            android:textSize="45sp" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/buscador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:queryHint="Buscar Pokemon"
+            android:background="#7269cb"
             app:iconifiedByDefault="false"
-            android:background="#7269cb"/>
+            app:queryHint="Buscar Pokemon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/genPokemonTop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    app:singleSelection="true"
+                    app:singleLine="true"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/allPokemon"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/todos"
+                        android:checked="true"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/firstGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_1" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/secondGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_2" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/thirdGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_3" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/fourthGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_4" />
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/genPokemonBottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    app:singleSelection="true"
+                    app:singleLine="true"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/fifthGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_5" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/sixthGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_6" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/seventhGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_7" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/eighthGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_8" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/ninethGen"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gen_9" />
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

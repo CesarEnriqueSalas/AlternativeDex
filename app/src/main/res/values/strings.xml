@@ -29,4 +29,14 @@
     <string name="nombre">Nombre</string>
     <string name="imagen">Foto de perfil</string>
     <string name="TitleHome">Pokedex</string>
+    <string name="todos">Todos</string>
+    <string name="gen_1">Gen 1</string>
+    <string name="gen_2">Gen 2</string>
+    <string name="gen_3">Gen 3</string>
+    <string name="gen_4">Gen 4</string>
+    <string name="gen_5">Gen 5</string>
+    <string name="gen_6">Gen 6</string>
+    <string name="gen_7">Gen 7</string>
+    <string name="gen_9">Gen 9</string>
+    <string name="gen_8">Gen 8</string>
 </resources>

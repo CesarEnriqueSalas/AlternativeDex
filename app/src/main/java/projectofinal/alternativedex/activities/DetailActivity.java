@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
             ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
 
             if (pokemonNumber <= 151) {
-                constraintLayout.setBackgroundResource(R.drawable.kanto_map);
+                constraintLayout.setBackgroundResource(R.drawable.kanto_map2);
             } else if (pokemonNumber <= 251){
                 constraintLayout.setBackgroundResource(R.drawable.johto_map);
             } else if (pokemonNumber <= 386) {

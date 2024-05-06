@@ -26,6 +26,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
 
     private ArrayList<Pokemon> dataset;
     private ArrayList<Pokemon> originalPokemon;
+
     private Context context;
 
     public ListaPokemonAdapter(Context context){
@@ -97,7 +98,33 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
         notifyDataSetChanged();
     }
 
+    public void genAllList(String generation) {
+        dataset.clear();
+        if (generation.isEmpty()) {
+            dataset.addAll(originalPokemon);
+        } else {
+            for (Pokemon p : originalPokemon) {
+                if (p.getGeneration().contains(generation)) {
+                    dataset.add(p);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 
+    public void genList(String generation) {
+        dataset.clear();
+        if (generation.isEmpty()) {
+            dataset.addAll(originalPokemon);
+        } else {
+            for (Pokemon p : originalPokemon) {
+                if (p.getGeneration().equalsIgnoreCase(generation)) {
+                    dataset.add(p);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 
     public void adicionarListaPokemon(ArrayList<Pokemon> listaPokemon){
         originalPokemon.addAll(listaPokemon);
@@ -122,6 +149,6 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
             fotoImagenView = itemView.findViewById(R.id.fotoPokemon);
             nombreTextView = itemView.findViewById(R.id.nombrePokemon);
         }
-
     }
+
 }
