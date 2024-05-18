@@ -39,4 +39,6 @@
     <string name="gen_7">Gen 7</string>
     <string name="gen_9">Gen 9</string>
     <string name="gen_8">Gen 8</string>
+    <string name="todo">TODO</string>
+    <string name="regional_tournaments">Regional Tournaments</string>
 </resources>

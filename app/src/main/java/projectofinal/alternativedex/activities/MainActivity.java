@@ -15,9 +15,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 
 import projectofinal.alternativedex.fragments.SingInFragment;
-import projectofinal.alternativedex.fragments.TournamentFragment;
 import projectofinal.alternativedex.fragments.HomeFragment;
 import projectofinal.alternativedex.R;
+import projectofinal.alternativedex.fragments.TournamentFragment;
 
 public class MainActivity extends AppCompatActivity {
 

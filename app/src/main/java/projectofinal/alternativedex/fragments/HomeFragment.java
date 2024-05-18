@@ -81,6 +81,8 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                         if((visibleItemCount + pastVisibleItems) >= totalItemCount){
                             Log.i(TAG, "Llegamos al final.");
 
+                            aptoParaCargar = false;
+
                             if (offset < 985) {
                                 offset += 25;
                                 obtenerDatos(offset);
