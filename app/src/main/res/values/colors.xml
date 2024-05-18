@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red"> #a93226 </color>
     <color name="grey">#a9a0a0</color>
-
+    <color name="purple">#7269cb</color>
     //cuenta y chat
     <color name="primary">#1C2E46</color>
     <color name="primary_dark">#142232</color>

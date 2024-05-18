@@ -1,6 +1,7 @@
 package projectofinal.alternativedex.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +27,19 @@ public class ListaTournamentsAdapter extends RecyclerView.Adapter<ListaTournamen
 
     @NonNull
     @Override
-    public ListaTournamentsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v  = LayoutInflater.from(context).inflate(R.layout.imagen_tournaments, parent, false);
-        return new ViewHolder(v);
+        ViewHolder viewHolder = new ViewHolder(v);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = viewHolder.getAdapterPosition();
+                Tournaments tournaments = tournamentsArrayList.get(position);
+                Intent intent = tournaments.getIntent(v.getContext());
+                v.getContext().startActivity(intent);
+            }
+        });
+        return viewHolder;
     }
 
     @Override

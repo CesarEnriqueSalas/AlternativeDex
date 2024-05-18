@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity"
     android:orientation="vertical"
-    android:background="#7b69c7">
+    android:background="@color/purple">
 
     <FrameLayout
         android:id="@+id/frame"
@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/frame"
-        android:background="#7b69c7"
+        android:background="@color/my_toolbar_icon_color"
+        app:itemTextColor="@color/white"
         app:menu="@menu/bottom_nav_menu"/>
 
 </LinearLayout>

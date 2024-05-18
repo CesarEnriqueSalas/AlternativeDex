@@ -67,31 +67,30 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (dy > 0){
-                    int visibleItemCount = layoutManager.getChildCount();
-                    int totalItemCount = layoutManager.getItemCount();
-                    int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
-
-                    if(aptoParaCargar){
-                        if((visibleItemCount + pastVisibleItems) >= totalItemCount){
-                            Log.i(TAG, "Llegamos al final.");
-
-                            aptoParaCargar = false;
-
-                            if (offset < 985) {
-                                offset += 25;
-                                obtenerDatos(offset);
-                            }
-                        }
-                    }
-                }
-            }
-        });
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                if (dy > 0){
+//                    int visibleItemCount = layoutManager.getChildCount();
+//                    int totalItemCount = layoutManager.getItemCount();
+//                    int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
+//
+//                    if(aptoParaCargar){
+//                        if((visibleItemCount + pastVisibleItems) >= totalItemCount){
+//                            Log.i(TAG, "Llegamos al final.");
+//
+//
+//                            if (offset < 985) {
+//                                offset += 25;
+//                                obtenerDatos(offset);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        });
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/")
@@ -242,7 +241,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
     private void obtenerDatos(int offset){
         PokeApiService service = retrofit.create(PokeApiService.class);
-        Call<PokemonRespuesta> pokemonRespuestaCall = service.obtenerListaPokemon(25, offset);
+        Call<PokemonRespuesta> pokemonRespuestaCall = service.obtenerListaPokemon(1025, offset);
 
         pokemonRespuestaCall.enqueue(new Callback<PokemonRespuesta>() {
             @Override

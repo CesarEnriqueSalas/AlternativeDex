@@ -20,7 +20,7 @@
 
 
     <string name="bienvenido">Bienvenido</string>
-    <string name="iniciaSesion">iniciar sesion</string>
+    <string name="iniciaSesion">Iniciar sesion</string>
     <string name="email">Email</string>
     <string name="contrasena">Contraseña</string>
     <string name="nueva_cuenta">Nueva cuenta</string>
@@ -41,4 +41,8 @@
     <string name="gen_8">Gen 8</string>
     <string name="todo">TODO</string>
     <string name="regional_tournaments">Regional Tournaments</string>
+    <string name="menuPokedex">Pokedex</string>
+    <string name="torneos">Torneos</string>
+    <string name="chat">Chat</string>
+    <string name="cuenta">Cuenta</string>
 </resources>

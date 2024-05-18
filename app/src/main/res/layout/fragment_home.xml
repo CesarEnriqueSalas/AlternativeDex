@@ -16,7 +16,7 @@
             android:id="@+id/textoAplicacion"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#7269cb"
+            android:background="@color/purple"
             android:text="@string/TitleHome"
             android:textAlignment="center"
             android:textAllCaps="true"
@@ -28,11 +28,12 @@
             android:id="@+id/buscador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#7269cb"
+            android:background="@color/purple"
             app:iconifiedByDefault="false"
             app:queryHint="Buscar Pokemon" />
 
         <LinearLayout
+            android:background="@color/purple"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -145,7 +146,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#7269cb" />
+            android:background="@color/purple" />
     </LinearLayout>
 
 </FrameLayout>

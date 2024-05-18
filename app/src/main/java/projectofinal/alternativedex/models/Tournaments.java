@@ -1,5 +1,10 @@
 package projectofinal.alternativedex.models;
 
+import android.content.Context;
+import android.content.Intent;
+
+import projectofinal.alternativedex.activities.TournamentsActivity;
+
 public class Tournaments {
 
     private String fecha, formato, lugarEvento, nombre, organizador, ubicacion, imagen;
@@ -71,5 +76,17 @@ public class Tournaments {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public Intent getIntent(Context context){
+        Intent intent = new Intent(context, TournamentsActivity.class);
+        intent.putExtra("fecha", this.fecha);
+        intent.putExtra("formato", this.formato);
+        intent.putExtra("lugarEvento", this.lugarEvento);
+        intent.putExtra("nombre", this.nombre);
+        intent.putExtra("organizador", this.organizador);
+        intent.putExtra("ubicacion", this.ubicacion);
+        intent.putExtra("imagen", this.imagen);
+        return intent;
     }
 }

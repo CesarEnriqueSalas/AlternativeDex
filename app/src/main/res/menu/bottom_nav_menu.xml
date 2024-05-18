@@ -3,21 +3,21 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/icon_home"
-        android:title="Pokedex"
+        android:title="@string/menuPokedex"
         />
     <item
         android:id="@+id/tournaments"
         android:icon="@drawable/tournaments_icon"
-        android:title="Torneos"
+        android:title="@string/torneos"
         />
     <item
         android:id="@+id/chat"
         android:icon="@drawable/chat_icon"
-        android:title="Chat"
+        android:title="@string/chat"
         />
     <item
         android:id="@+id/profile"
         android:icon="@drawable/person_icon"
-        android:title="Cuenta"
+        android:title="@string/cuenta"
         />
 </menu>
