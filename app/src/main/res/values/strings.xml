@@ -45,4 +45,10 @@
     <string name="torneos">Torneos</string>
     <string name="chat">Chat</string>
     <string name="cuenta">Cuenta</string>
+    <string name="event">Evento:</string>
+    <string name="location">Localizacion:</string>
+    <string name="date">Fecha:</string>
+    <string name="formato">Formato:</string>
+    <string name="organizador">Organizador:</string>
+    <string name="ubicacion">Ubicación:</string>
 </resources>

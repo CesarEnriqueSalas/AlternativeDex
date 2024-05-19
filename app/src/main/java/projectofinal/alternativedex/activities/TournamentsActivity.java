@@ -1,6 +1,5 @@
 package projectofinal.alternativedex.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,18 +7,19 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.util.Base64;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Arrays;
 
 import projectofinal.alternativedex.R;
 
 public class TournamentsActivity extends AppCompatActivity {
 
     private ImageView imageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +38,26 @@ public class TournamentsActivity extends AppCompatActivity {
         String imagen = intent.getStringExtra("imagen");
 
         imageView = findViewById(R.id.tournamentImageView);
+        TextView eventoNombre = findViewById(R.id.textEvent);
+        TextView eventoFecha = findViewById(R.id.textDate);
+        TextView eventoFormato = findViewById(R.id.textFormat);
+        TextView eventoLugar = findViewById(R.id.textLocation);
+        TextView eventoUbicacion = findViewById(R.id.textUbication);
+        TextView eventoOrganizador = findViewById(R.id.textOrganizer);
+
+        eventoNombre.setText(nombre);
+        eventoFecha.setText(fecha);
+        eventoFormato.setText(formato);
+        eventoLugar.setText(lugarEvento);
+        eventoUbicacion.setText(ubicacion);
+        eventoOrganizador.setText(organizador);
 
         if (imagen != null && !imagen.isEmpty()){
             setImageFromBase64(imagen);
         }
 
-        //prueba();
+
+
     }
 
     private void setupToolbar() {
@@ -65,6 +79,16 @@ public class TournamentsActivity extends AppCompatActivity {
         byte[] decodeBytes = Base64.decode(base64String, Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(decodeBytes, 0, decodeBytes.length);
         imageView.setImageBitmap(bitmap);
+    }
+
+    private String encodeImage(Bitmap bitmap){
+        int previewWidth = 400;
+        int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
 }

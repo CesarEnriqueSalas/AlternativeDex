@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">AlternativeDex</string>
+    <string name="iniciar">Log In</string>
+    <string name="numero">No.____</string>
+    <string name="nombrePokemon">Pokemon Name</string>
+    <string name="peso">Weight</string>
+    <string name="pokedex">Pokedex No.</string>
+    <string name="tiposPokemon">Pokemon Type</string>
+    <string name="valorDefecto">130</string>
+    <string name="textoTipos">Types</string>
+    <string name="statsPokemon">Pokemon Stats</string>
+    <string name="hp">HP</string>
+    <string name="atk">ATK</string>
+    <string name="def">DEF</string>
+    <string name="spa">SPA</string>
+    <string name="spd">SPD</string>
+    <string name="spe">SPE</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="bienvenido">Welcome</string>
+    <string name="iniciaSesion">Log In</string>
+    <string name="email">Email</string>
+    <string name="contrasena">Password</string>
+    <string name="nueva_cuenta">New Account</string>
+    <string name="confirmarContrasena">Confirm Password</string>
+    <string name="crear_cuenta">Create Account</string>
+    <string name="nombre">Name</string>
+    <string name="imagen">Profile Picture</string>
+    <string name="TitleHome">Pokedex</string>
+    <string name="todos">All</string>
+    <string name="gen_1">Gen 1</string>
+    <string name="gen_2">Gen 2</string>
+    <string name="gen_3">Gen 3</string>
+    <string name="gen_4">Gen 4</string>
+    <string name="gen_5">Gen 5</string>
+    <string name="gen_6">Gen 6</string>
+    <string name="gen_7">Gen 7</string>
+    <string name="gen_9">Gen 9</string>
+    <string name="gen_8">Gen 8</string>
+    <string name="todo">All</string>
+    <string name="regional_tournaments">Regional Tournaments</string>
+    <string name="menuPokedex">Pokedex</string>
+    <string name="torneos">Tournaments</string>
+    <string name="chat">Chat</string>
+    <string name="cuenta">Account</string>
+    <string name="event">Event:</string>
+    <string name="location">Location:</string>
+    <string name="date">Date:</string>
+    <string name="formato">Format:</string>
+    <string name="organizador">Organizer:</string>
+    <string name="ubicacion">Location:</string>
+</resources>

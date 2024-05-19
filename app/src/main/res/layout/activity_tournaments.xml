@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.TournamentsActivity"
-    android:background="#7b69c7">
+    android:background="#7b69c7"
+    tools:context=".activities.TournamentsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarTournaments"
@@ -20,13 +20,13 @@
         android:id="@+id/tournamentImageView"
         android:layout_width="400dp"
         android:layout_height="250dp"
-        android:layout_marginTop="50dp"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="-120dp"
+        android:adjustViewBounds="true"
         android:contentDescription="TODO"
         android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
         android:translationZ="1000dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +48,188 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-    </LinearLayout>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="150dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:text="@string/event"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textEvent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:textAppearance="@color/secondary_text"                        android:textColor="@color/white"
+                        android:textSize="25sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:text="@string/location"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:textAppearance="@color/secondary_text"                        android:textColor="@color/white"
+                        android:textSize="25sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:text="@string/ubicacion"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/textUbication"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:textAppearance="@color/secondary_text"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:text="@string/date"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/textDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:textAppearance="@color/secondary_text"                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:text="@string/formato"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/textFormat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:textAppearance="@color/secondary_text"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:text="@string/organizador"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/textOrganizer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:fontFamily="monospace"
+                        android:textAppearance="@color/secondary_text"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
