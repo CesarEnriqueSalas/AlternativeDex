@@ -170,24 +170,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void mostrarDetallePokemon(PokemonDetalle pokemonDetalle, int pokemonId) {
-        TextView weightTextView = findViewById(R.id.weightTextnumber);
-
-        int peso = pokemonDetalle.getWeight();
-        String pesoTexto = String.valueOf(peso);
-        int longitud = pesoTexto.length();
-        String pesoFormateado;
-        if (longitud > 1) {
-            String parteEntera = pesoTexto.substring(0, longitud - 1);
-            String parteDecimal = pesoTexto.substring(longitud - 1);
-            if (parteDecimal.equals("0")) {
-                pesoFormateado = parteEntera + " Kg";
-            } else {
-                pesoFormateado = parteEntera + "," + parteDecimal + " Kg";
-            }
-        } else {
-            pesoFormateado = pesoTexto + " Kg";
-        }
-        weightTextView.setText(pesoFormateado);
+        formatoNombre(pokemonDetalle);
 
         TextView idTextView = findViewById(R.id.pokedexTextnumber);
         idTextView.setText(String.valueOf(pokemonId));
@@ -206,6 +189,10 @@ public class DetailActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.tipoTexto);
         textView.setText(typesString.toUpperCase());
 
+        valoresStats(pokemonDetalle);
+    }
+
+    private void valoresStats(PokemonDetalle pokemonDetalle) {
         List<PokemonDetalle.Stat> stats = pokemonDetalle.getStats();
         for (int i = 0; i < stats.size(); i++) {
             PokemonDetalle.Stat stat = stats.get(i);
@@ -243,6 +230,27 @@ public class DetailActivity extends AppCompatActivity {
                 progressBar.setProgress(Math.min(baseStat, max));
             }
         }
+    }
+
+    private void formatoNombre(PokemonDetalle pokemonDetalle) {
+        TextView weightTextView = findViewById(R.id.weightTextnumber);
+
+        int peso = pokemonDetalle.getWeight();
+        String pesoTexto = String.valueOf(peso);
+        int longitud = pesoTexto.length();
+        String pesoFormateado;
+        if (longitud > 1) {
+            String parteEntera = pesoTexto.substring(0, longitud - 1);
+            String parteDecimal = pesoTexto.substring(longitud - 1);
+            if (parteDecimal.equals("0")) {
+                pesoFormateado = parteEntera + " Kg";
+            } else {
+                pesoFormateado = parteEntera + "," + parteDecimal + " Kg";
+            }
+        } else {
+            pesoFormateado = pesoTexto + " Kg";
+        }
+        weightTextView.setText(pesoFormateado);
     }
 
     @Override

@@ -60,6 +60,7 @@
                 android:paddingStart="@dimen/_16sdp"
                 android:paddingEnd="@dimen/_16sdp"
                 android:textColor="@color/primary_text"
+                android:textColorHint="@color/black"
                 android:textSize="@dimen/_13ssp" />
             <EditText
                 android:id="@+id/email"
@@ -74,6 +75,7 @@
                 android:paddingStart="@dimen/_16sdp"
                 android:paddingEnd="@dimen/_16sdp"
                 android:textColor="@color/primary_text"
+                android:textColorHint="@color/black"
                 android:textSize="@dimen/_13ssp" />
             <EditText
                 android:id="@+id/contrasena"
@@ -88,6 +90,7 @@
                 android:paddingStart="@dimen/_16sdp"
                 android:paddingEnd="@dimen/_16sdp"
                 android:textColor="@color/primary_text"
+                android:textColorHint="@color/black"
                 android:textSize="@dimen/_13ssp" />
             <EditText
                 android:id="@+id/confirmarContrasena"
@@ -102,6 +105,7 @@
                 android:paddingStart="@dimen/_16sdp"
                 android:paddingEnd="@dimen/_16sdp"
                 android:textColor="@color/primary_text"
+                android:textColorHint="@color/black"
                 android:textSize="@dimen/_13ssp" />
             <FrameLayout
                  android:layout_width="match_parent"

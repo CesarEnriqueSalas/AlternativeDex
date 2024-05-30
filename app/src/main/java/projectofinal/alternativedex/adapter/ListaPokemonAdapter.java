@@ -90,7 +90,7 @@ public class ListaPokemonAdapter extends RecyclerView.Adapter<ListaPokemonAdapte
             dataset.addAll(originalPokemon);
         } else {
             for(Pokemon p : originalPokemon){
-                if (p.getName().toLowerCase().contains(strSearch)){
+                if (p.getName().toLowerCase().contains(strSearch.toLowerCase())){
                     dataset.add(p);
                 }
             }

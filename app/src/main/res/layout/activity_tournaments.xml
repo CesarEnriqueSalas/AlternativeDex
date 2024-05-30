@@ -14,16 +14,15 @@
         android:layout_height="72dp"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextAppearance="@style/ToolbarTitleText"
-        app:titleTextColor="@android:color/black" />
+        app:titleTextColor="@android:color/black"/>
 
     <ImageView
         android:id="@+id/tournamentImageView"
         android:layout_width="400dp"
         android:layout_height="250dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="-120dp"
+        android:layout_marginBottom="-80dp"
         android:adjustViewBounds="true"
         android:contentDescription="TODO"
         android:scaleType="fitCenter"
@@ -62,7 +61,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="150dp"
+                    android:layout_marginTop="90dp"
                     android:orientation="vertical">
 
                     <TextView

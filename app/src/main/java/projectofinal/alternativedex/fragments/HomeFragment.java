@@ -101,136 +101,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         offset = 0;
         obtenerDatos(offset);
         initListener();
-
-        allPokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genAllList("Gen");
-                gen5PokemonChip.setChecked(false);
-                gen6PokemonChip.setChecked(false);
-                gen7PokemonChip.setChecked(false);
-                gen8PokemonChip.setChecked(false);
-                gen9PokemonChip.setChecked(false);
-                aptoParaCargar = true;
-            }
-        });
-
-        gen1PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen1");
-                gen5PokemonChip.setChecked(false);
-                gen6PokemonChip.setChecked(false);
-                gen7PokemonChip.setChecked(false);
-                gen8PokemonChip.setChecked(false);
-                gen9PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
-
-        gen2PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen2");
-                gen5PokemonChip.setChecked(false);
-                gen6PokemonChip.setChecked(false);
-                gen7PokemonChip.setChecked(false);
-                gen8PokemonChip.setChecked(false);
-                gen9PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
-
-        gen3PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen3");
-                gen5PokemonChip.setChecked(false);
-                gen6PokemonChip.setChecked(false);
-                gen7PokemonChip.setChecked(false);
-                gen8PokemonChip.setChecked(false);
-                gen9PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
-
-        gen4PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen4");
-                gen5PokemonChip.setChecked(false);
-                gen6PokemonChip.setChecked(false);
-                gen7PokemonChip.setChecked(false);
-                gen8PokemonChip.setChecked(false);
-                gen9PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
-
-        gen5PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen5");
-                allPokemonChip.setChecked(false);
-                gen1PokemonChip.setChecked(false);
-                gen2PokemonChip.setChecked(false);
-                gen3PokemonChip.setChecked(false);
-                gen4PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
-
-        gen6PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen6");
-                allPokemonChip.setChecked(false);
-                gen1PokemonChip.setChecked(false);
-                gen2PokemonChip.setChecked(false);
-                gen3PokemonChip.setChecked(false);
-                gen4PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
-
-        gen7PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen7");
-                allPokemonChip.setChecked(false);
-                gen1PokemonChip.setChecked(false);
-                gen2PokemonChip.setChecked(false);
-                gen3PokemonChip.setChecked(false);
-                gen4PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
-
-        gen8PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen8");
-                allPokemonChip.setChecked(false);
-                gen1PokemonChip.setChecked(false);
-                gen2PokemonChip.setChecked(false);
-                gen3PokemonChip.setChecked(false);
-                gen4PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
-
-        gen9PokemonChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listaPokemonAdapter.genList("Gen9");
-                allPokemonChip.setChecked(false);
-                gen1PokemonChip.setChecked(false);
-                gen2PokemonChip.setChecked(false);
-                gen3PokemonChip.setChecked(false);
-                gen4PokemonChip.setChecked(false);
-                aptoParaCargar = false;
-            }
-        });
+        configureChipListeners();
 
         return view;
     }
@@ -272,6 +143,68 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         });
     }
 
+    private void configureChipListeners() {
+        Chip[] chips = {allPokemonChip, gen1PokemonChip, gen2PokemonChip, gen3PokemonChip, gen4PokemonChip, gen5PokemonChip, gen6PokemonChip, gen7PokemonChip, gen8PokemonChip, gen9PokemonChip};
+        String[] generations = {"Gen", "Gen1", "Gen2", "Gen3", "Gen4", "Gen5", "Gen6", "Gen7", "Gen8", "Gen9"};
+
+        for (int i = 0; i < chips.length; i++) {
+            Chip chip = chips[i];
+            String generation = generations[i];
+            chip.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (generation.equals("Gen")) {
+                        listaPokemonAdapter.genAllList(generation);
+                        aptoParaCargar = true;
+                    } else {
+                        listaPokemonAdapter.genList(generation);
+                        aptoParaCargar = false;
+                    }
+                    resetOtherChips(chip);
+                    checkAndActivateAllChip();
+                }
+            });
+        }
+    }
+
+    private void resetOtherChips(Chip selectedChip) {
+        Chip[] allChips = {allPokemonChip, gen1PokemonChip, gen2PokemonChip, gen3PokemonChip, gen4PokemonChip, gen5PokemonChip, gen6PokemonChip, gen7PokemonChip, gen8PokemonChip, gen9PokemonChip};
+        for (Chip chip : allChips) {
+            if (chip != selectedChip) {
+                chip.setChecked(false);
+            }
+        }
+    }
+
+    private void checkAndActivateAllChip() {
+        Chip[] allChips = {gen1PokemonChip, gen2PokemonChip, gen3PokemonChip, gen4PokemonChip, gen5PokemonChip, gen6PokemonChip, gen7PokemonChip, gen8PokemonChip, gen9PokemonChip};
+        boolean allUnchecked = true;
+
+        for (Chip chip : allChips) {
+            if (chip.isChecked()) {
+                allUnchecked = false;
+                break;
+            }
+        }
+
+        if (allUnchecked) {
+            allPokemonChip.setChecked(true);
+            listaPokemonAdapter.genAllList("Gen");
+            aptoParaCargar = true;
+        }
+    }
+
+    private void filterChipFalse() {
+        Chip[] allChips = {allPokemonChip, gen1PokemonChip, gen2PokemonChip, gen3PokemonChip, gen4PokemonChip, gen5PokemonChip, gen6PokemonChip, gen7PokemonChip, gen8PokemonChip, gen9PokemonChip};
+        for (Chip chip : allChips) {
+            if (chip == allPokemonChip) {
+                chip.setChecked(true);
+            } else {
+                chip.setChecked(false);
+            }
+        }
+    }
+
     private String calcularGeneracion(int pokemonNumber) {
         if (pokemonNumber <= 151) {
             return "Gen1";
@@ -301,6 +234,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        filterChipFalse();
         listaPokemonAdapter.filter(newText);
         return false;
     }
