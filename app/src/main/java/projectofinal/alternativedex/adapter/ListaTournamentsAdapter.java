@@ -43,7 +43,7 @@ public class ListaTournamentsAdapter extends RecyclerView.Adapter<ListaTournamen
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListaTournamentsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Tournaments tournaments = tournamentsArrayList.get(position);
 
         holder.name.setText(tournaments.getNombre());

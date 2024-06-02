@@ -10,18 +10,6 @@ public class Tournaments {
     private String fecha, formato, lugarEvento, nombre, organizador, ubicacion, imagen;
 
 
-    public Tournaments(){}
-
-    public Tournaments(String fecha, String formato, String lugarEvento, String nombre, String organizador, String ubicacion, String imagen) {
-        this.fecha = fecha;
-        this.formato = formato;
-        this.lugarEvento = lugarEvento;
-        this.nombre = nombre;
-        this.organizador = organizador;
-        this.ubicacion = ubicacion;
-        this.imagen = imagen;
-    }
-
     public String getFecha() {
         return fecha;
     }
