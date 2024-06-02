@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 
+import projectofinal.alternativedex.fragments.ChatFragment;
 import projectofinal.alternativedex.fragments.SingInFragment;
 import projectofinal.alternativedex.fragments.HomeFragment;
 import projectofinal.alternativedex.R;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new TournamentFragment(), false);
 
                 } else if (itemId == R.id.chat) {
+                    loadFragment(new ChatFragment(), false);
 
                 } else if (itemId == R.id.profile){
                     loadFragment(new SingInFragment(), false);
