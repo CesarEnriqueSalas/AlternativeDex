@@ -15,9 +15,4 @@
         android:icon="@drawable/chat_icon"
         android:title="@string/chat"
         />
-    <item
-        android:id="@+id/profile"
-        android:icon="@drawable/person_icon"
-        android:title="@string/cuenta"
-        />
 </menu>
