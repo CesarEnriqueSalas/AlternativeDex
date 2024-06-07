@@ -1,5 +1,8 @@
 package projectofinal.alternativedex.fragments;
 
+import static android.content.Intent.getIntentOld;
+
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -25,6 +28,7 @@ import java.util.List;
 
 import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.activities.MainActivity;
+import projectofinal.alternativedex.activities.UsersActivity;
 import projectofinal.alternativedex.adapter.ChatAdapter;
 import projectofinal.alternativedex.databinding.FragmentChatBinding;
 import projectofinal.alternativedex.models.ChatMessage;
@@ -33,7 +37,7 @@ import projectofinal.alternativedex.utilities.Constants;
 import projectofinal.alternativedex.utilities.PreferenceManager;
 
 
-public class ChatFragment extends Fragment {
+public class   ChatFragment extends Fragment {
     private TextView textName;
     private ImageView imageProfile;
     private PreferenceManager preferenceManager;
@@ -93,6 +97,7 @@ public class ChatFragment extends Fragment {
         imageSignOut.setOnClickListener(v -> signOut());
         //binding.imageBack.setOnClickListener(v -> onBackPressed());
         binding.layoutSend.setOnClickListener(v -> sendMessage());
+        binding.fabNewChat.setOnClickListener(v-> startActivity(new Intent(requireContext(), UsersActivity.class)));
     }
 
 
@@ -115,7 +120,6 @@ public class ChatFragment extends Fragment {
                         preferenceManager.getString(Constants.KEY_USUARIO_ID)
                 );
         documentReference.update(Constants.KEY_FCM_TOKEN, token)
-                .addOnSuccessListener(unused -> showToast("Token updated succesfully"))
                 .addOnFailureListener(e -> showToast("Unable to update token"));
     }
     private void signOut(){
@@ -135,10 +139,10 @@ public class ChatFragment extends Fragment {
                 })
                 .addOnFailureListener(e -> showToast("Unable to sign out"));
     }
-//    private void loadRecieverDetails(){
-  //      recieveUser = (User) getIntentOld().getSerializableExtra(Constants.KEY_USUARIO);
-    //    binding.textName.setText(recieveUser.name);
-    //}
+    //private void loadRecieverDetails(){
+       // recieveUser = (User) getIntentOld().getSerializableExtra(Constants.KEY_USUARIO);
+     //  binding.textName.setText(recieveUser.name);
+   // }
 
 
 
