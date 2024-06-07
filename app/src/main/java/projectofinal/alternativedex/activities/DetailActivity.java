@@ -122,19 +122,30 @@ public class DetailActivity extends AppCompatActivity {
         if (mediaPlayer == null) {
             mediaPlayer = MediaPlayer.create(this, R.raw.pk_shiny_sound);
             mediaPlayer.setLooping(true);
-            mediaPlayer.start();
-
+            int audioDuration = mediaPlayer.getDuration();
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     stop();
                 }
             });
+
+            mediaPlayer.start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(audioDuration);
+                        stop();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
         } else if (!mediaPlayer.isPlaying()) {
             mediaPlayer.start();
         }
     }
-
     private void stop() {
         if (mediaPlayer != null) {
             mediaPlayer.release();
