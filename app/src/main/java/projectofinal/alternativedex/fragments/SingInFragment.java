@@ -1,8 +1,7 @@
 package projectofinal.alternativedex.fragments;
+
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
+import androidx.fragment.app.Fragment;
+
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
 
 import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.activities.MainActivity;
@@ -24,32 +22,20 @@ import projectofinal.alternativedex.utilities.Constants;
 import projectofinal.alternativedex.utilities.PreferenceManager;
 
 public class SingInFragment extends Fragment {
-    private TextView nuevaCuenta;
-    private Button iniciarSesion;
     private TextView email;
-    private TextView contraseña;
+    private TextView contrasena;
     private PreferenceManager preferenceManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sing_in, container, false);
-        preferenceManager = new PreferenceManager(getContext().getApplicationContext());
-        //if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
-            //Intent intent = new Intent(getContext().getApplicationContext(), MainActivity.class);
-            //startActivity(intent);
-            //finish();
-        //}
-        nuevaCuenta = view.findViewById(R.id.nuevaCuenta);
+        preferenceManager = new PreferenceManager(requireContext().getApplicationContext());
+        TextView nuevaCuenta = view.findViewById(R.id.nuevaCuenta);
         email = view.findViewById(R.id.email); // Corregido aquí
-        contraseña = view.findViewById(R.id.contraseña); // Corregido aquí
+        contrasena = view.findViewById(R.id.contrasena); // Corregido aquí
 
-        nuevaCuenta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) requireActivity()).loadFragment(new SingUpFragment(), false);
-            }
-        });
-        iniciarSesion = view.findViewById(R.id.SingIn);
+        nuevaCuenta.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new SingUpFragment(), false));
+        Button iniciarSesion = view.findViewById(R.id.SingIn);
         iniciarSesion.setOnClickListener(v ->{
             if(isValidSignInDetails()){
                 signIn();
@@ -63,7 +49,7 @@ public class SingInFragment extends Fragment {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USUARIOS)
                 .whereEqualTo(Constants.KEY_EMAIL,email.getText().toString())
-                .whereEqualTo(Constants.KEY_CONTRASENA, contraseña.getText().toString())
+                .whereEqualTo(Constants.KEY_CONTRASENA, contrasena.getText().toString())
                 .get()
                 .addOnCompleteListener(task ->{
                    if(task.isSuccessful() && task.getResult() != null
@@ -73,6 +59,9 @@ public class SingInFragment extends Fragment {
                        preferenceManager.putString(Constants.KEY_USUARIO_ID, documentSnapshot.getId());
                        preferenceManager.putString(Constants.KEY_NOMBRE, documentSnapshot.getString(Constants.KEY_NOMBRE));
                        preferenceManager.putString(Constants.KEY_IMAGEN, documentSnapshot.getString(Constants.KEY_IMAGEN));
+
+                       //cambiar para que cambie al chat
+                       //((MainActivity) requireActivity()).loadFragment(new ChatFragment(), false);
                        Intent intent = new Intent(requireContext(), MainActivity.class);
                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                        startActivity(intent);
@@ -83,8 +72,8 @@ public class SingInFragment extends Fragment {
                 });
     }
     private void loading(Boolean isLoading) {
-        Button signInButton = getView().findViewById(R.id.SingIn);
-        ProgressBar progressBar = getView().findViewById(R.id.progressBar);
+        Button signInButton = requireView().findViewById(R.id.SingIn);
+        ProgressBar progressBar = requireView().findViewById(R.id.progressBar);
         if (isLoading) {
             signInButton.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.VISIBLE);
@@ -104,7 +93,7 @@ public class SingInFragment extends Fragment {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
             showToast("Introduce un email válido");
             return false;
-        } else if (contraseña.getText().toString().trim().isEmpty()) {
+        } else if (contrasena.getText().toString().trim().isEmpty()) {
             showToast("Introduce la contraseña");
             return false;
         } else {

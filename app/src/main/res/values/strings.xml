@@ -29,6 +29,7 @@
     <string name="nombre">Nombre</string>
     <string name="imagen">Foto de perfil</string>
     <string name="TitleHome">Pokedex</string>
+    <string name="escribe_mensaje">Escribe un mensaje</string>
     <string name="todos">Todos</string>
     <string name="gen_1">Gen 1</string>
     <string name="gen_2">Gen 2</string>
@@ -51,4 +52,5 @@
     <string name="formato">Formato:</string>
     <string name="organizador">Organizador:</string>
     <string name="ubicacion">Ubicación:</string>
+    <string name="elegir_usuario">elegir usuario</string>
 </resources>

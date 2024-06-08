@@ -43,27 +43,19 @@ import projectofinal.alternativedex.utilities.PreferenceManager;
 
 public class SingUpFragment extends Fragment {
 
-    private TextView iniciarSesion;
     private String encodedImage;
-    private Button crearCuenta;
     private EditText nombre;
     private EditText email;
     private EditText contrasena;
     private EditText confirmarContrasena;
-    private FrameLayout layoutImage;
     private PreferenceManager preferenceManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sing_up, container, false);
-        preferenceManager = new PreferenceManager(getContext().getApplicationContext());
-        iniciarSesion = view.findViewById(R.id.iniciarSesion);
-        iniciarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) requireActivity()).loadFragment(new SingInFragment(), false);
-            }
-        });
+        preferenceManager = new PreferenceManager(requireContext().getApplicationContext());
+        TextView iniciarSesion = view.findViewById(R.id.iniciarSesion);
+        iniciarSesion.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new SingInFragment(), false));
 
         // Inicializar los EditText aquí
         nombre = view.findViewById(R.id.nombre);
@@ -71,7 +63,7 @@ public class SingUpFragment extends Fragment {
         contrasena = view.findViewById(R.id.contrasena);
         confirmarContrasena = view.findViewById(R.id.confirmarContrasena);
 
-        crearCuenta = view.findViewById(R.id.SingUp);
+        Button crearCuenta = view.findViewById(R.id.SingUp);
         crearCuenta.setOnClickListener(v -> {
             if (isValidSignUpDetails(nombre.getText().toString(), email.getText().toString(),
                     contrasena.getText().toString(), confirmarContrasena.getText().toString(),
@@ -80,7 +72,7 @@ public class SingUpFragment extends Fragment {
                         contrasena.getText().toString(), encodedImage);
             }
         });
-        layoutImage = view.findViewById(R.id.layoutImage);
+        FrameLayout layoutImage = view.findViewById(R.id.layoutImage);
         layoutImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -135,12 +127,13 @@ public class SingUpFragment extends Fragment {
                     if (result.getData() != null) {
                         Uri imageUri = result.getData().getData();
                         try {
-                            InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri);
+                            assert imageUri != null;
+                            InputStream inputStream = requireActivity().getContentResolver().openInputStream(imageUri);
                             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                            ImageView imageProfile = getActivity().findViewById(R.id.imagenPerfil);
+                            ImageView imageProfile = requireActivity().findViewById(R.id.imagenPerfil);
                             imageProfile.setImageBitmap(bitmap);
 
-                            TextView textAddImage = getActivity().findViewById(R.id.textoAnadirImagen);
+                            TextView textAddImage = requireActivity().findViewById(R.id.textoAnadirImagen);
                             textAddImage.setVisibility(View.GONE);
 
                             encodedImage = encodeImage(bitmap);
@@ -180,8 +173,8 @@ public class SingUpFragment extends Fragment {
         }
     }
     private void loading(Boolean isLoading) {
-        Button signUpButton = getView().findViewById(R.id.SingUp);
-        ProgressBar progressBar = getView().findViewById(R.id.progressBar);
+        Button signUpButton = requireView().findViewById(R.id.SingUp);
+        ProgressBar progressBar = requireView().findViewById(R.id.progressBar);
         if (isLoading) {
             signUpButton.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.VISIBLE);
