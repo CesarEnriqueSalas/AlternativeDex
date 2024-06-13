@@ -1,10 +1,13 @@
 package projectofinal.alternativedex.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -14,28 +17,37 @@ import java.util.List;
 
 import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.adapter.UserAdapter;
-import projectofinal.alternativedex.databinding.ActivityUsersBinding;
 import projectofinal.alternativedex.listeners.UsersListener;
 import projectofinal.alternativedex.models.User;
 import projectofinal.alternativedex.utilities.Constants;
 import projectofinal.alternativedex.utilities.PreferenceManager;
 
 public class UsersActivity extends AppCompatActivity implements UsersListener {
-    private ActivityUsersBinding binding;
     private PreferenceManager preferenceManager;
+    private ImageView imageBack;
+    private RecyclerView usersRecyclerView;
+    private ProgressBar progressBar;
+    private TextView textErrorMessage;
+    private User receiveUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        binding = ActivityUsersBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());  // Cambiado aquí
+        setContentView(R.layout.activity_users);
+
         preferenceManager = new PreferenceManager(getApplicationContext());
+
+        imageBack = findViewById(R.id.imageBack);
+        usersRecyclerView = findViewById(R.id.usersRecyclerView);
+        progressBar = findViewById(R.id.progressBar);
+        textErrorMessage = findViewById(R.id.textErrorMessage);
+
         setListeners();
         getUsers();
     }
 
     private void setListeners(){
-        binding.imageBack.setOnClickListener(v -> onBackPressed());
+        imageBack.setOnClickListener(v -> onBackPressed());
     }
 
     private void getUsers(){
@@ -62,8 +74,8 @@ public class UsersActivity extends AppCompatActivity implements UsersListener {
                         }
                         if(users.size() > 0){
                             UserAdapter userAdapter = new UserAdapter(users, this);
-                            binding.usersRecyclerView.setAdapter(userAdapter);
-                            binding.usersRecyclerView.setVisibility(View.VISIBLE);
+                            usersRecyclerView.setAdapter(userAdapter);
+                            usersRecyclerView.setVisibility(View.VISIBLE);
                         }else {
                             showErrorMessage();
                         }
@@ -74,22 +86,21 @@ public class UsersActivity extends AppCompatActivity implements UsersListener {
     }
 
     private void showErrorMessage(){
-        binding.textErrorMessage.setText(String.format("%s", "Sin usuario disponible"));
-        binding.textErrorMessage.setVisibility(View.VISIBLE);
+        textErrorMessage.setText(String.format("%s", "Sin usuario disponible"));
+        textErrorMessage.setVisibility(View.VISIBLE);
     }
 
     private void loading (Boolean isLoading){
         if(isLoading){
-            binding.progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
         }else{
-            binding.progressBar.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
+
     @Override
-    public void onUserClicked(User user){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra(Constants.KEY_USUARIO, user);
-        startActivity(intent);
+    public void onUserClicked(User user) {
+
     }
 }

@@ -2,20 +2,23 @@ package projectofinal.alternativedex.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Base64;
 import java.util.List;
 
-import projectofinal.alternativedex.databinding.ItemContainerUserBinding;
+import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.listeners.UsersListener;
 import projectofinal.alternativedex.models.User;
 
-public class UserAdapter  extends RecyclerView.Adapter<UserAdapter.UserViewHolder>{
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
     private final List<User> users;
     private final UsersListener usersListener;
 
@@ -27,18 +30,13 @@ public class UserAdapter  extends RecyclerView.Adapter<UserAdapter.UserViewHolde
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemContainerUserBinding itemContainerUserBinding = ItemContainerUserBinding.inflate(
-                LayoutInflater.from(parent.getContext()),
-                parent,
-                false
-        );
-        return new UserViewHolder(itemContainerUserBinding);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_user, parent, false);
+        return new UserViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         holder.setUserData(users.get(position));
-
     }
 
     @Override
@@ -46,23 +44,43 @@ public class UserAdapter  extends RecyclerView.Adapter<UserAdapter.UserViewHolde
         return users.size();
     }
 
-    class UserViewHolder extends RecyclerView.ViewHolder{
-        ItemContainerUserBinding binding;
-        UserViewHolder(ItemContainerUserBinding itemContainerUserBinding){
-            super(itemContainerUserBinding.getRoot());
+    class UserViewHolder extends RecyclerView.ViewHolder {
+        private ImageView imageProfile;
+        private TextView textName;
 
-        }
-        void setUserData(User user){
-            binding.textName.setText(user.name);
-            binding.textEmail.setText(user.email);
-            binding.imageProfile.setImageBitmap(getUserImage(user.image));
-            binding.getRoot().setOnClickListener(v -> usersListener.onUserClicked(user));
+        UserViewHolder(View itemView) {
+            super(itemView);
+            imageProfile = itemView.findViewById(R.id.imageProfile);
+            textName = itemView.findViewById(R.id.textName);
         }
 
-    }
-    private Bitmap getUserImage(String encodedImage){
-        byte[] bytes = Base64.getDecoder().decode(encodedImage);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-    }
+        void setUserData(User user) {
+            textName.setText(user.name);
+            Bitmap bitmap = getUserImage(user.image);
+            if (bitmap != null) {
+                imageProfile.setImageBitmap(bitmap);
+            } else {
+                imageProfile.setImageResource(R.drawable.default_profile_image); // Set default image if decoding fails
+            }
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (usersListener != null) {
+                        usersListener.onUserClicked(user);
+                    }
+                }
+            });
+        }
+
+        private Bitmap getUserImage(String encodedImage) {
+            try {
+                byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+                return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
 }
