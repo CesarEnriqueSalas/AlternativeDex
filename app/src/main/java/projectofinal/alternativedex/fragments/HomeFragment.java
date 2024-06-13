@@ -1,22 +1,16 @@
 package projectofinal.alternativedex.fragments;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
-
 import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-
 import java.util.ArrayList;
-
 import projectofinal.alternativedex.R;
 import projectofinal.alternativedex.adapter.ListaPokemonAdapter;
 import projectofinal.alternativedex.models.Pokemon;
@@ -67,30 +61,6 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-//                super.onScrolled(recyclerView, dx, dy);
-//
-//                if (dy > 0){
-//                    int visibleItemCount = layoutManager.getChildCount();
-//                    int totalItemCount = layoutManager.getItemCount();
-//                    int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
-//
-//                    if(aptoParaCargar){
-//                        if((visibleItemCount + pastVisibleItems) >= totalItemCount){
-//                            Log.i(TAG, "Llegamos al final.");
-//
-//
-//                            if (offset < 985) {
-//                                offset += 25;
-//                                obtenerDatos(offset);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        });
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/")
@@ -234,8 +204,27 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        filterChipFalse();
         listaPokemonAdapter.filter(newText);
+        if (newText.isEmpty()) {
+            enableAllChips();
+            filterChipFalse();
+        } else {
+            checkAllChipsAndDisableOthers();
+        }
         return false;
+    }
+
+    private void enableAllChips() {
+        Chip[] allChips = {allPokemonChip, gen1PokemonChip, gen2PokemonChip, gen3PokemonChip, gen4PokemonChip, gen5PokemonChip, gen6PokemonChip, gen7PokemonChip, gen8PokemonChip, gen9PokemonChip};
+        for (Chip chip : allChips) {
+            chip.setEnabled(true);
+        }
+    }
+
+    private void checkAllChipsAndDisableOthers() {
+        Chip[] allChips = {allPokemonChip, gen1PokemonChip, gen2PokemonChip, gen3PokemonChip, gen4PokemonChip, gen5PokemonChip, gen6PokemonChip, gen7PokemonChip, gen8PokemonChip, gen9PokemonChip};
+        for (Chip chip : allChips) {
+            chip.setEnabled(false);
+        }
     }
 }

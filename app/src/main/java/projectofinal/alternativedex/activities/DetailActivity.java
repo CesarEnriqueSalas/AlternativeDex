@@ -146,6 +146,7 @@ public class DetailActivity extends AppCompatActivity {
             mediaPlayer.start();
         }
     }
+
     private void stop() {
         if (mediaPlayer != null) {
             mediaPlayer.release();
@@ -181,7 +182,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void mostrarDetallePokemon(PokemonDetalle pokemonDetalle, int pokemonId) {
-        formatoNombre(pokemonDetalle);
+        pokemonDetalle.convertirTiposAEspanol(); // Convertir los tipos a espanol y mayusculas
 
         TextView idTextView = findViewById(R.id.pokedexTextnumber);
         idTextView.setText(String.valueOf(pokemonId));
