@@ -1,5 +1,6 @@
 package projectofinal.alternativedex.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -101,6 +102,8 @@ public class UsersActivity extends AppCompatActivity implements UsersListener {
 
     @Override
     public void onUserClicked(User user) {
-
+        Intent intent = new Intent(getApplicationContext(), MessageActivity.class);
+        intent.putExtra(Constants.KEY_USUARIO, user);
+        startActivity(intent);
     }
 }

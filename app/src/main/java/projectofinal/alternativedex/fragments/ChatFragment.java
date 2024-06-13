@@ -43,7 +43,6 @@ public class ChatFragment extends Fragment {
     private ChatAdapter chatAdapter;
     private FirebaseFirestore database;
     private User receiveUser;
-
     private EditText inputMessage;
     private View layoutSend;
     private View fabNewChat;
@@ -146,6 +145,5 @@ public class ChatFragment extends Fragment {
                 })
                 .addOnFailureListener(e -> showToast("Unable to sign out"));
     }
-
 
 }
